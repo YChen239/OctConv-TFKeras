@@ -1,0 +1,2 @@
+from models.models import create_octconv_wide_resnet
+from models.models import create_normal_wide_resnet

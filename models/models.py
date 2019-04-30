@@ -1,5 +1,5 @@
 from tensorflow.keras import layers
-from oct_conv2d import OctConv2D
+from models.oct_conv2d import OctConv2D
 from tensorflow.keras.models import Model
 
 def _create_normal_residual_block(inputs, ch, N):
