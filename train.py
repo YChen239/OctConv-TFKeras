@@ -3,7 +3,7 @@ from tensorflow.keras.optimizers import SGD
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import LearningRateScheduler, History
 from tensorflow.contrib.tpu.python.tpu import keras_support
-from models import *
+from models.models import *
 
 from keras.datasets import cifar10
 from keras.utils import to_categorical

@@ -1,4 +1,4 @@
-from models import *
+from models.models import *
 import numpy as np
 import time
 from tqdm import tqdm
