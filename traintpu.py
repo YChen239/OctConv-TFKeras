@@ -1,8 +1,10 @@
 import tensorflow as tf
 from tensorflow.keras.optimizers import SGD
+from keras.optimizers import Adam
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import LearningRateScheduler, History
 from tensorflow.contrib.tpu.python.tpu import keras_support
+from keras import backend as K
 from models import *
 
 from keras.datasets import cifar10
@@ -15,7 +17,7 @@ def lr_scheduler(epoch):
     if epoch >= 150: x /= 5.0
     return x
 
-def train(alpha):
+def train(alpha, type):
     (X_train, y_train), (X_test, y_test) = cifar10.load_data()
     train_gen = ImageDataGenerator(rescale=1.0/255, horizontal_flip=True, 
                                     width_shift_range=4.0/32.0, height_shift_range=4.0/32.0)
@@ -25,11 +27,22 @@ def train(alpha):
 
     tf.logging.set_verbosity(tf.logging.FATAL)
 
-    if alpha <= 0:
-        model = create_normal_wide_resnet()
-    else:
-        model = create_octconv_wide_resnet(alpha)
-    model.compile(SGD(0.1, momentum=0.9), "categorical_crossentropy", ["acc"])
+    if type == resnet:
+        if alpha <= 0:
+            model = create_normal_wide_resnet()
+        else:
+            model = create_octconv_wide_resnet(alpha)
+
+    if type == densnet:
+        img_dim = (3, 32, 32) if K.image_dim_ordering() == "th" else (32, 32, 3)
+        if alpha <= 0:
+            model = DenseNet(img_dim, classes=10, depth=40, nb_dense_block=3,
+                          growth_rate=12, nb_filter=-1, dropout_rate=0.0, weights=None)
+        else:
+            model = create_octconv_wide_resnet(alpha)
+    # model.compile(SGD(0.1, momentum=0.9), "categorical_crossentropy", ["acc"])
+    optimizer = Adam(lr=1e-3)  # Using Adam instead of SGD to speed up training
+    model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=["accuracy"])
     model.summary()
 
     # convert to tpu model
@@ -58,5 +71,10 @@ def train(alpha):
         pickle.dump(history, fp)
 
 if __name__ == "__main__":
-    train(0)
 
+    type = densnet
+    train(0, type)
+
+    with open("octconv_alpha_0.25.pkl", "rb") as fp:
+        data = pickle.load(fp)
+        print(f"Max test accuracy = {max(data['val_acc']):.04}")
