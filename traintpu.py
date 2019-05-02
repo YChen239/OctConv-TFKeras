@@ -1,8 +1,8 @@
 import tensorflow as tf
 from tensorflow.keras.optimizers import SGD
 from keras.optimizers import Adam
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.callbacks import LearningRateScheduler, History
+from keras.preprocessing.image import ImageDataGenerator
+from keras.callbacks import LearningRateScheduler, History
 from tensorflow.contrib.tpu.python.tpu import keras_support
 from keras import backend as K
 from models import *
@@ -34,10 +34,9 @@ def train(alpha, type):
             model = create_octconv_wide_resnet(alpha)
 
     if type == densnet:
-        img_dim = (3, 32, 32) if K.image_dim_ordering() == "th" else (32, 32, 3)
+        img_dim = (32, 32, 3)
         if alpha <= 0:
-            model = DenseNet(img_dim, classes=10, depth=40, nb_dense_block=3,
-                          growth_rate=12, nb_filter=-1, dropout_rate=0.0, weights=None)
+            model = DenseNet(input_shape=img_dim, nb_classes=10).build_model()
         else:
             model = create_octconv_wide_resnet(alpha)
     # model.compile(SGD(0.1, momentum=0.9), "categorical_crossentropy", ["acc"])
