@@ -74,8 +74,9 @@ if __name__ == "__main__":
 
     type = 'densenet'
     #type = 'resnet'
-    train(0, type)
+    alhpa = 0.25
+    train(alhpa, type)
 
-    with open("octconv_alpha_0.25.pkl", "rb") as fp:
+    with open("octconv_alpha_{alpha}.pkl", "rb") as fp:
         data = pickle.load(fp)
         print(f"Max test accuracy = {max(data['val_acc']):.04}")
