@@ -1,6 +1,7 @@
-from keras import layers
+from tensorflow.keras import layers
 from models.oct_conv2d import OctConv2D
-from keras.models import Model
+from tensorflow.keras.models import Model
+
 
 def _create_normal_residual_block(inputs, ch, N):
     # adujust channels

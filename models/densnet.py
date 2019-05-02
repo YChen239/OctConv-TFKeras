@@ -10,6 +10,7 @@ from keras import layers
 from models.oct_conv2d import OctConv2D
 
 
+
 class DenseNet:
 
     def __init__(self, input_shape=None, dense_blocks=3, dense_layers=-1, growth_rate=12, nb_classes=None,
