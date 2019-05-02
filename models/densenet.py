@@ -5,9 +5,11 @@
 - [DenseNet - Lua implementation](https://github.com/liuzhuang13/DenseNet)
 """
 
-import keras
-from keras import layers
+#import keras
+from tensorflow import keras
+from tensorflow.keras import layers
 from models.oct_conv2d import OctConv2D
+from tensorflow.keras.models import Model
 
 
 
@@ -100,7 +102,7 @@ class DenseNet:
         x = layers.GlobalAveragePooling2D()(x)
         prediction = layers.Dense(self.nb_classes, activation='softmax')(x)
 
-        return keras.Model(inputs=img_input, outputs=prediction, name='densenet')
+        return Model(img_input, prediction)
 
     def build_octave_model(self, alpha):
         """
@@ -143,7 +145,7 @@ class DenseNet:
         x = layers.GlobalAveragePooling2D()(x)
         prediction = layers.Dense(self.nb_classes, activation='softmax')(x)
 
-        return keras.Model(inputs=img_input, outputs=prediction, name='densenet')
+        return Model(img_input, prediction)
 
     def dense_block(self, x, nb_layers, nb_channels, growth_rate, dropout_rate=None, bottleneck=False,
                     weight_decay=1e-4):
