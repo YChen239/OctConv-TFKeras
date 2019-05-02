@@ -56,4 +56,6 @@ Theoretical FLOPs cost are from the paper.
 
 You can see that the time spent on prediction decreases with theoretical FLOPs costs, both CPU and GPU.
 
-
+## Reference Code
+- Densenet(https://github.com/cmasch/densenet)
+- Oct-Resnent(https://github.com/koshian2/OctConv-TFKeras)
