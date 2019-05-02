@@ -33,7 +33,6 @@ def train(alpha, type):
         else:
             model = create_octconv_wide_resnet(alpha)
 
-        #model.compile(SGD(0.1, momentum=0.9), "categorical_crossentropy", ["acc"])
 
     if type == 'densenet':
         img_dim = (32, 32, 3)

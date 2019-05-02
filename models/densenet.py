@@ -81,8 +81,7 @@ class DenseNet:
         nb_channels = self.growth_rate
 
         # Initial convolution layer
-        x = layers.Convolution2D(2 * self.growth_rate, (3, 3), padding='same', strides=(1, 1),
-                                 kernel_regularizer=keras.regularizers.l2(self.weight_decay))(img_input)
+        x = layers.Convolution2D(2 * self.growth_rate, (3, 3), padding='same', strides=(1, 1))(img_input)
 
         # Building dense blocks
         for block in range(self.dense_blocks - 1):
@@ -170,8 +169,7 @@ class DenseNet:
             bottleneckWidth = 4
             x = layers.BatchNormalization()(x)
             x = layers.Activation('relu')(x)
-            x = layers.Convolution2D(nb_channels * bottleneckWidth, (1, 1),
-                                     kernel_regularizer=keras.regularizers.l2(weight_decay))(x)
+            x = layers.Convolution2D(nb_channels * bottleneckWidth, (1, 1))(x)
             # Dropout
             if dropout_rate:
                 x = layers.Dropout(dropout_rate)(x)
@@ -195,8 +193,7 @@ class DenseNet:
 
         x = layers.BatchNormalization()(x)
         x = layers.Activation('relu')(x)
-        x = layers.Convolution2D(int(nb_channels * compression), (1, 1), padding='same',
-                                 kernel_regularizer=keras.regularizers.l2(weight_decay))(x)
+        x = layers.Convolution2D(int(nb_channels * compression), (1, 1), padding='same')(x)
 
         # Adding dropout
         if dropout_rate:

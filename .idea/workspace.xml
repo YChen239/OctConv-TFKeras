@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6178e617-0e1b-4db1-8807-de7007ff907f" name="Default Changelist" comment="" />
+    <list default="true" id="6178e617-0e1b-4db1-8807-de7007ff907f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/models/densenet.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/densenet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/traintpu.py" beforeDir="false" afterPath="$PROJECT_DIR$/traintpu.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/densenet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="124" selection-start-line="124" selection-end-line="124" />
+            <state relative-caret-position="-491">
+              <caret line="195" column="87" selection-start-line="195" selection-start-column="87" selection-end-line="195" selection-end-column="87" />
               <folding>
                 <element signature="e#214#242#0" expanded="true" />
               </folding>
@@ -37,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/traintpu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-192">
-              <caret line="55" column="13" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="13" />
+            <state relative-caret-position="215">
+              <caret line="39" column="78" lean-forward="true" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="78" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -64,10 +67,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://D:/software/aneconda/Lib/site-packages/keras/engine/base_layer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
+            <state relative-caret-position="265">
               <caret line="1310" selection-start-line="1310" selection-end-line="1310" />
             </state>
           </provider>
@@ -94,8 +97,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/oct_conv2d.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="78" column="31" lean-forward="true" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
+            <state relative-caret-position="-937">
+              <caret line="3" column="32" lean-forward="true" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+              <folding>
+                <element signature="e#144#168#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -131,16 +137,16 @@
         <option value="$PROJECT_DIR$/models/tensorflow_backend.py" />
         <option value="$PROJECT_DIR$/models/theano_backend.py" />
         <option value="$PROJECT_DIR$/models/subpixel.py" />
-        <option value="$PROJECT_DIR$/models/oct_conv2d.py" />
         <option value="$PROJECT_DIR$/models/resnet.py" />
-        <option value="$PROJECT_DIR$/traintpu.py" />
         <option value="$PROJECT_DIR$/models/densnet.py" />
         <option value="$PROJECT_DIR$/models/__init__.py" />
+        <option value="$PROJECT_DIR$/models/oct_conv2d.py" />
+        <option value="$PROJECT_DIR$/traintpu.py" />
         <option value="$PROJECT_DIR$/models/densenet.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-250" />
     <option name="y" value="20" />
     <option name="width" value="1750" />
@@ -299,7 +305,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15257595" />
@@ -307,8 +313,8 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32892805" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39353892" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32892805" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39353892" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -330,9 +336,9 @@
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/densenet.py</url>
-          <line>124</line>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/models/oct_conv2d.py</url>
+          <line>78</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -444,16 +450,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/traintpu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-192">
-          <caret line="55" column="13" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/resnet.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1176">
@@ -461,27 +457,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/densenet.py">
+    <entry file="file://D:/software/aneconda/Lib/site-packages/keras/engine/base_layer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="124" selection-start-line="124" selection-end-line="124" />
-          <folding>
-            <element signature="e#214#242#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="265">
+          <caret line="1310" selection-start-line="1310" selection-end-line="1310" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/oct_conv2d.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="78" column="31" lean-forward="true" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
+        <state relative-caret-position="-937">
+          <caret line="3" column="32" lean-forward="true" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+          <folding>
+            <element signature="e#144#168#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/software/aneconda/Lib/site-packages/keras/engine/base_layer.py">
+    <entry file="file://$PROJECT_DIR$/traintpu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="1310" selection-start-line="1310" selection-end-line="1310" />
+        <state relative-caret-position="215">
+          <caret line="39" column="78" lean-forward="true" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="78" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/densenet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-491">
+          <caret line="195" column="87" selection-start-line="195" selection-start-column="87" selection-end-line="195" selection-end-column="87" />
+          <folding>
+            <element signature="e#214#242#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
