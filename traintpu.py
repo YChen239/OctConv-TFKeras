@@ -73,8 +73,8 @@ def train(alpha, type):
 
 if __name__ == "__main__":
 
-    #type = 'densenet'
-    type = 'resnet'
+    type = 'densenet'
+    #type = 'resnet'
     train(0.25, type)
 
     with open("octconv_alpha_0.25.pkl", "rb") as fp:

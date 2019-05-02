@@ -128,13 +128,14 @@ class DenseNet:
                                               self.dropout_rate, self.bottleneck, self.weight_decay)
 
             # Add transition_block
-            high, low = self.transition_octave_layer(high, low, nb_channels, alpha, self.dropout_rate, self.compression, self.weight_decay)
+            high, low = self.transition_octave_layer(high, low, alpha, nb_channels, self.dropout_rate, self.compression, self.weight_decay)
             nb_channels = int(nb_channels * self.compression)
 
         # Add last dense block without transition but for that with global average pooling
-        high, low, nb_channels = self.dense_block(high, low, alpha, self.dense_layers[-1], nb_channels,
+        high, low, nb_channels = self.dense_octave_block(high, low, alpha, self.dense_layers[-1], nb_channels,
                                           self.growth_rate, self.dropout_rate, self.weight_decay)
 
+        high = layers.AveragePooling2D(2)(high)
         x = layers.Concatenate()([high, low])
         x = layers.BatchNormalization()(x)
         x = layers.Activation('relu')(x)
@@ -212,7 +213,7 @@ class DenseNet:
             step_high, step_low = self.convolution_octave_block(high, low, alpha,  growth_rate, dropout_rate, bottleneck)
             nb_channels += growth_rate
             high = layers.concatenate([step_high, high])
-            low = layers.concatenate([step_high, low])
+            low = layers.concatenate([step_low, low])
         return high, low, nb_channels
 
     def convolution_octave_block(self, high, low, alpha, nb_channels, dropout_rate=None, bottleneck=False, weight_decay=1e-4):
@@ -257,7 +258,7 @@ class DenseNet:
         low = layers.BatchNormalization()(low)
         high = layers.Activation('relu')(high)
         low = layers.Activation('relu')(low)
-        high, low = OctConv2D(filters=int(nb_channels * compression), kernel_size=(1, 1), alpha = alpha)([high, low])
+        high, low = OctConv2D(filters=int(nb_channels * compression), kernel_size=(1, 1), alpha=alpha)([high, low])
 
         # Adding dropout
         if dropout_rate:
