@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
     type = 'densenet'
     #type = 'resnet'
-    alhpa = 0.25
+    alhpa = 0.5
     train(alhpa, type)
 
     with open("octconv_alpha_{alpha}.pkl", "rb") as fp:
