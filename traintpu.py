@@ -72,7 +72,7 @@ def train(alpha, type):
 if __name__ == "__main__":
 
     type = densnet
-    train(0, type)
+    train(0.25, type)
 
     with open("octconv_alpha_0.25.pkl", "rb") as fp:
         data = pickle.load(fp)
