@@ -4,7 +4,7 @@ Drop an Octave: Reducing Spatial Redundancy in Convolutional Neural Networks wit
 https://arxiv.org/abs/1904.05049
 """
 
-from keras import layers
+from tensorflow.keras import layers
 from keras.models import Model
 import tensorflow.keras.backend as K
 
