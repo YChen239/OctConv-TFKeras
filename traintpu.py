@@ -1,8 +1,8 @@
 import tensorflow as tf
 from tensorflow.keras.optimizers import SGD
-from keras.optimizers import Adam
-from keras.preprocessing.image import ImageDataGenerator
-from keras.callbacks import LearningRateScheduler, History
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.callbacks import LearningRateScheduler, History
 from tensorflow.contrib.tpu.python.tpu import keras_support
 from keras import backend as K
 from models import *

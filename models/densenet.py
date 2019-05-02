@@ -6,7 +6,7 @@
 """
 
 import keras
-from keras import layers
+from tensorflow.keras import layers
 from models.oct_conv2d import OctConv2D
 
 
