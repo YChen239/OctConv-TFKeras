@@ -114,24 +114,25 @@ class DenseNet:
         print('Layers per dense block: %s' % self.dense_layers)
         print('#############################################')
 
-        img_input = layers.Input(shape=self.input_shape, name='img_input')
+        img_input = layers.Input((32,32,3))
+        low = layers.AveragePooling2D(2)(img_input)
         nb_channels = self.growth_rate
 
         # Initial convolution layer
-        high, low = OctConv2D(2 * self.growth_rate, (3, 3))(img_input)
+        high, low = OctConv2D(filters=2 * self.growth_rate, alpha=alpha)([img_input, low])
 
         # Building dense blocks
         for block in range(self.dense_blocks - 1):
             # Add dense block
-            high, low, nb_channels = self.dense_octave_block(high, low, self.dense_layers[block], nb_channels, self.growth_rate,
+            high, low, nb_channels = self.dense_octave_block(high, low, alpha, self.dense_layers[block], nb_channels, self.growth_rate,
                                               self.dropout_rate, self.bottleneck, self.weight_decay)
 
             # Add transition_block
-            high, low = self.transition_octave_layer(high, low, nb_channels, self.dropout_rate, self.compression, self.weight_decay)
+            high, low = self.transition_octave_layer(high, low, nb_channels, alpha, self.dropout_rate, self.compression, self.weight_decay)
             nb_channels = int(nb_channels * self.compression)
 
         # Add last dense block without transition but for that with global average pooling
-        high, low, nb_channels = self.dense_block(high, low, self.dense_layers[-1], nb_channels,
+        high, low, nb_channels = self.dense_block(high, low, alpha, self.dense_layers[-1], nb_channels,
                                           self.growth_rate, self.dropout_rate, self.weight_decay)
 
         x = layers.Concatenate()([high, low])
@@ -201,20 +202,20 @@ class DenseNet:
         return x
 
 
-    def dense_octave_block(self, high, low, nb_layers, nb_channels, growth_rate, dropout_rate=None, bottleneck=False,
+    def dense_octave_block(self, high, low, alpha, nb_layers, nb_channels, growth_rate, dropout_rate=None, bottleneck=False,
                     weight_decay=1e-4):
         """
         Creates a dense block and concatenates inputs
         """
 
         for i in range(nb_layers):
-            step_high, step_low = self.convolution_octave_block(high, low, growth_rate, dropout_rate, bottleneck)
+            step_high, step_low = self.convolution_octave_block(high, low, alpha,  growth_rate, dropout_rate, bottleneck)
             nb_channels += growth_rate
             high = layers.concatenate([step_high, high])
             low = layers.concatenate([step_high, low])
         return high, low, nb_channels
 
-    def convolution_octave_block(self, high, low, nb_channels, dropout_rate=None, bottleneck=False, weight_decay=1e-4):
+    def convolution_octave_block(self, high, low, alpha, nb_channels, dropout_rate=None, bottleneck=False, weight_decay=1e-4):
         """
         Creates a convolution block consisting of BN-ReLU-Conv.
         Optional: bottleneck, dropout
@@ -227,7 +228,7 @@ class DenseNet:
             low = layers.BatchNormalization()(low)
             high = layers.Activation('relu')(high)
             low = layers.Activation('relu')(low)
-            high, low = layers.Convolution2D(nb_channels * bottleneckWidth, (1, 1))([high, low])
+            high, low = OctConv2D(filters=nb_channels * bottleneckWidth, kernel_size=(1, 1), alpha=alpha)([high, low])
             # Dropout
             if dropout_rate:
                 high = layers.Dropout(dropout_rate)(high)
@@ -238,7 +239,7 @@ class DenseNet:
         low = layers.BatchNormalization()(low)
         high = layers.Activation('relu')(high)
         low = layers.Activation('relu')(low)
-        high, low = layers.Convolution2D(nb_channels, (3, 3))([high, low])
+        high, low = OctConv2D(filters=nb_channels, kernel_size=(3, 3), alpha=alpha)([high, low])
 
         # Dropout
         if dropout_rate:
@@ -246,7 +247,7 @@ class DenseNet:
             low = layers.Dropout(dropout_rate)(low)
         return high, low
 
-    def transition_octave_layer(self, high, low, nb_channels, dropout_rate=None, compression=1.0, weight_decay=1e-4):
+    def transition_octave_layer(self, high, low, alpha, nb_channels, dropout_rate=None, compression=1.0, weight_decay=1e-4):
         """
         Creates a transition layer between dense blocks as transition, which do convolution and pooling.
         Works as downsampling.
@@ -256,7 +257,7 @@ class DenseNet:
         low = layers.BatchNormalization()(low)
         high = layers.Activation('relu')(high)
         low = layers.Activation('relu')(low)
-        high, low = layers.Convolution2D(int(nb_channels * compression), (1, 1))([high, low])
+        high, low = OctConv2D(filters=int(nb_channels * compression), kernel_size=(1, 1), alpha = alpha)([high, low])
 
         # Adding dropout
         if dropout_rate:

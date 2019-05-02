@@ -27,18 +27,20 @@ def train(alpha, type):
 
     tf.logging.set_verbosity(tf.logging.FATAL)
 
-    if type == resnet:
+    if type == 'resnet':
         if alpha <= 0:
             model = create_normal_wide_resnet()
         else:
             model = create_octconv_wide_resnet(alpha)
 
-    if type == densnet:
+        #model.compile(SGD(0.1, momentum=0.9), "categorical_crossentropy", ["acc"])
+
+    if type == 'densenet':
         img_dim = (32, 32, 3)
         if alpha <= 0:
             model = DenseNet(input_shape=img_dim, nb_classes=10).build_model()
         else:
-            model = create_octconv_wide_resnet(alpha)
+            model = DenseNet(input_shape=img_dim, nb_classes=10).build_octave_model(alpha)
     # model.compile(SGD(0.1, momentum=0.9), "categorical_crossentropy", ["acc"])
     optimizer = Adam(lr=1e-3)  # Using Adam instead of SGD to speed up training
     model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=["accuracy"])
@@ -71,7 +73,8 @@ def train(alpha, type):
 
 if __name__ == "__main__":
 
-    type = densnet
+    #type = 'densenet'
+    type = 'resnet'
     train(0.25, type)
 
     with open("octconv_alpha_0.25.pkl", "rb") as fp:
