@@ -60,7 +60,7 @@ def train(alpha, type):
                         steps_per_epoch=X_train.shape[0]//batch_size,
                         validation_data=test_gen.flow(X_test, y_test, batch_size, shuffle=False),
                         validation_steps=X_test.shape[0]//batch_size,
-                        callbacks=[scheduler, hist], max_queue_size=5, epochs=200)
+                        callbacks=[scheduler, hist], max_queue_size=5, epochs=150)
     elapsed = time.time() - start_time
     print(elapsed)
 
@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
     type = 'densenet'
     #type = 'resnet'
-    alhpa = 0.5
+    alhpa = 0
     train(alhpa, type)
 
     with open("octconv_alpha_{alpha}.pkl", "rb") as fp:
