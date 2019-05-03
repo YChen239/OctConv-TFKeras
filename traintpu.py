@@ -74,8 +74,8 @@ if __name__ == "__main__":
 
     type = 'densenet'
     #type = 'resnet'
-    alhpa = 0
-    train(alhpa, type)
+    alpha = 0.25
+    train(alpha, type)
 
     with open("octconv_alpha_{alpha}.pkl", "rb") as fp:
         data = pickle.load(fp)
