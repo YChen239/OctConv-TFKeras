@@ -67,16 +67,16 @@ def train(alpha, type):
     history = hist.history
     history["elapsed"] = elapsed
 
-    with open(f"octconv_alpha_{alpha}.pkl", "wb") as fp:
+    with open(f"resnet_{alpha}.pkl", "wb") as fp:
         pickle.dump(history, fp)
 
 if __name__ == "__main__":
 
     #type = 'densenet'
     type = 'resnet'
-    alpha = 0.75
+    alpha = 0.25
     train(alpha, type)
 
-    with open(f"octconv_alpha_{alpha}.pkl", "rb") as fp:
+    with open(f"resnet_{alpha}.pkl", "rb") as fp:
         data = pickle.load(fp)
         print(f"Max test accuracy = {max(data['val_acc']):.04}")
