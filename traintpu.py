@@ -72,11 +72,11 @@ def train(alpha, type):
 
 if __name__ == "__main__":
 
-    #type = 'densenet'
-    type = 'resnet'
+    type = 'densenet'
+    #type = 'resnet'
     alpha = 0.25
     train(alpha, type)
 
-    with open(f"resnet_{alpha}.pkl", "rb") as fp:
+    with open(f"densenet_{alpha}.pkl", "rb") as fp:
         data = pickle.load(fp)
         print(f"Max test accuracy = {max(data['val_acc']):.04}")
