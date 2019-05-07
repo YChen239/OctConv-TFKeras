@@ -72,8 +72,8 @@ def train(alpha, type):
 
 if __name__ == "__main__":
 
-    type = 'densenet'
-    #type = 'resnet'
+    #type = 'densenet'
+    type = 'resnet'
     alpha = 0.25
     train(alpha, type)
 
